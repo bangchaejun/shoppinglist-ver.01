@@ -1,0 +1,105 @@
+#budgetSection {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+#budgetInput,
+button {
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+}
+
+#budgetInput {
+    flex: 1;
+    margin-right: 10px;
+}
+
+button {
+    background-color: #4caf50;
+    color: #fff;
+    cursor: pointer;
+}
+
+/* 기존 CSS 코드 */
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 80%;
+    margin: 20px auto; /* 페이지의 수직 중앙 정렬 */
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+#addItemSection {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+input[type="text"],
+button {
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+}
+
+input[type="text"] {
+    flex: 1;
+    margin-right: 10px;
+}
+
+button {
+    background-color: #4caf50;
+    color: #fff;
+    cursor: pointer;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-radius: 4px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.deleteButton {
+    background-color: #f44336;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+#totalAmountContainer {
+    display: flex;
+    flex-direction: column; /* 결과를 수직으로 배열 */
+    align-items: center; /* 결과를 수평으로 중앙으로 정렬 */
+}
+
+#totalAmount {
+    font-weight: bold;
+}
+
+#date {
+    font-style: italic;
+}
