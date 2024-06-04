@@ -3,30 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>장보기 리스트</title>
+    <title>Shopping List</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
 </head>
 <body>
     <div class="container">
-        <h1>장보기 리스트</h1>
+        <h1><i class="fas fa-shopping-cart"></i> Shopping List</h1>
+        
+        <!-- 마트 휴무일 정보 -->
+        <div id="holidaySection">
+            <button onclick="window.open('https://search.naver.com/search.naver?query=E%EB%A7%88%ED%8A%B8+%ED%9C%B4%EB%AC%B4%EC%9D%BC', '_blank')">이마트 휴무일</button>
+            <button onclick="window.open('https://search.naver.com/search.naver?query=%EB%A1%AF%EB%8D%B0%EB%A7%88%ED%8A%B8+%ED%9C%B4%EB%AC%B4%EC%9D%BC', '_blank')">롯데마트 휴무일</button>
+            <button onclick="window.open('https://search.naver.com/search.naver?query=%ED%99%88%ED%94%8C%EB%9F%AC%EC%8A%A4+%ED%9C%B4%EB%AC%B4%EC%9D%BC', '_blank')">홈플러스 휴무일</button>
+        </div>
+
+        <button class="helpButton" onclick="location.href='help.html'"><i class="fas fa-question-circle"></i></button>
         <div id="budgetSection">
-            <input type="text" id="budgetInput" placeholder="예산 설정 (₩)" oninput="formatCurrency(this)">
-            <button onclick="setBudget()">설정</button>
+            <input type="date" id="budgetDateInput" value="">
+            <div class="dropdown">
+                <input type="text" id="budgetInput" placeholder="예산 설정 (₩)" onfocus="showDropdown()" onblur="hideDropdown()" oninput="formatCurrency(this)">
+                <div id="dropdownMenu" class="dropdown-content">
+                    <div onclick="setPresetBudget(30000)">₩30,000</div>
+                    <div onclick="setPresetBudget(50000)">₩50,000</div>
+                    <div onclick="setPresetBudget(100000)">₩100,000</div>
+                    <div onclick="setPresetBudget(150000)">₩150,000</div>
+                    <div onclick="setPresetBudget(200000)">₩200,000</div>
+                </div>
+            </div>
+            <button onclick="setBudget()"><i class="fas fa-check"></i> 설정</button>
+        </div>
+        <div id="totalAmountContainer">
+            <div id="totalAmount">오늘 구매한 총 금액: ₩0</div>
+            <div id="budgetStatus">예산: 설정되지 않음</div>
+            <div id="balanceStatus" style="color: red;">잔액: ₩0</div>
         </div>
         <div id="addItemSection">
             <input type="text" id="itemNameInput" placeholder="무엇을 구매할까요?">
-            <button onclick="addItem()">추가</button>
+            <button onclick="addItem()"><i class="fas fa-plus"></i> 추가</button>
         </div>
         <ul id="itemList"></ul>
-        <div id="totalAmountContainer">
-            <div id="totalAmount">오늘 구매한 총 금액: ₩0</div>
-            <div id="remainingBudget">잔액: ₩0</div>
-            <div id="budgetStatus">예산 상태: 설정되지 않음</div>
-            <div id="date"></div>
-        </div>
-        <div id="historySection">
-            <h2>장보기 기록</h2>
+        <button id="removeSelectedButton" onclick="removeSelectedItemsFromList()"><i class="fas fa-trash-alt"></i> 선택 항목 삭제</button>
+
+        <!-- Shopping History Box -->
+        <div id="historyContainer">
+            <h2>Shopping History</h2>
             <ul id="historyList"></ul>
+            <button id="clearHistoryButton" onclick="deleteSelectedItems()"><i class="fas fa-trash-alt"></i> 선택 항목 지우기</button>
+        </div>
+
+        <!-- Button Container -->
+        <div id="buttonContainer">
+            <button id="shareButton" onclick="shareHistory()"><i class="fas fa-share"></i> 쇼핑목록공유</button>
+            <button id="resetButton" onclick="resetValues()"><i class="fas fa-undo"></i> 초기화</button>
         </div>
     </div>
     <script src="script.js"></script>

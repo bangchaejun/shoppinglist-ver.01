@@ -1,70 +1,152 @@
-#budgetSection {
-    display: flex;
-    margin-bottom: 20px;
-}
-
-#budgetInput,
-button {
-    padding: 10px;
-    border: none;
-    border-radius: 4px;
-}
-
-#budgetInput {
-    flex: 1;
-    margin-right: 10px;
-}
-
-button {
-    background-color: #4caf50;
-    color: #fff;
-    cursor: pointer;
-}
-
-/* 기존 CSS 코드 */
-
+/* 기본 스타일 */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f2f2f2;
+    font-family: 'Roboto', sans-serif;
+    background: linear-gradient(to right, #ffecd2 0%, #fcb69f 100%);
     margin: 0;
     padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    transition: background 0.3s;
 }
 
 .container {
-    max-width: 80%;
-    margin: 20px auto; /* 페이지의 수직 중앙 정렬 */
+    max-width: 800px;
+    width: 90%;
     background-color: #fff;
     padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 1s ease-in-out;
+    position: relative; /* 상대 위치로 변경 */
 }
 
+/* 반응형 디자인 */
+@media (max-width: 600px) {
+    .container {
+        padding: 10px;
+    }
+
+    h1 {
+        font-size: 1.5em;
+    }
+
+    button {
+        font-size: 14px;
+        padding: 8px 16px;
+    }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* 추가 스타일 */
 h1 {
     text-align: center;
     color: #333;
+    margin-bottom: 20px;
+    font-size: 2.5em;
+    font-weight: 700;
+    position: relative;
 }
 
-#addItemSection {
+.helpButton {
+    position: absolute;
+    right: 10px;
+    bottom: -10px;
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    padding: 10px;
+    cursor: pointer;
     display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease;
+    font-size: 14px;
+    width: 30px;
+    height: 30px;
+}
+
+.helpButton i {
+    margin: 0; /* 아이콘의 마진 제거 */
+}
+
+.helpButton:hover {
+    background-color: #2980b9;
+}
+
+#budgetSection, #addItemSection {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
     margin-bottom: 20px;
 }
 
-input[type="text"],
-button {
-    padding: 10px;
-    border: none;
-    border-radius: 4px;
-}
-
-input[type="text"] {
+#budgetInput, #itemNameInput, #budgetDateInput {
     flex: 1;
-    margin-right: 10px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 100%;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.dropdown-content div {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    cursor: pointer;
+}
+
+.dropdown-content div:hover {
+    background-color: #f1f1f1;
+}
+
+.show {
+    display: block;
 }
 
 button {
+    flex: 0 0 auto;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
     background-color: #4caf50;
     color: #fff;
+    font-size: 16px;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease;
+}
+
+button i {
+    margin-right: 5px;
+}
+
+button:hover {
+    background-color: #45a049;
 }
 
 ul {
@@ -74,32 +156,142 @@ ul {
 
 li {
     margin-bottom: 10px;
-    padding: 10px;
+    padding: 15px;
     background-color: #f9f9f9;
-    border-radius: 4px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    transition: transform 0.3s ease, background-color 0.3s ease;
 }
 
-.deleteButton {
-    background-color: #f44336;
+li:hover {
+    background-color: #f1f1f1;
+    transform: translateY(-5px);
+}
+
+.purchaseButton {
+    background-color: #4caf50;
     color: #fff;
     border: none;
-    border-radius: 4px;
+    border-radius: 5px;
     padding: 5px 10px;
     cursor: pointer;
-}
-
-#totalAmountContainer {
     display: flex;
-    flex-direction: column; /* 결과를 수직으로 배열 */
-    align-items: center; /* 결과를 수평으로 중앙으로 정렬 */
+    align-items: center;
+    transition: background-color 0.3s ease;
 }
 
-#totalAmount {
+.purchaseButton i {
+    margin-right: 5px;
+}
+
+.purchaseButton:hover {
+    background-color: #45a049;
+}
+
+#totalAmountContainer, #historyContainer {
+    margin-top: 20px;
+    text-align: center;
+}
+
+#totalAmountContainer div, #historyContainer h2 {
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+
+#totalAmount, #budgetStatus, #date {
     font-weight: bold;
 }
 
-#date {
-    font-style: italic;
+#historyContainer {
+    margin-top: 30px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#historyList li {
+    padding: 5px;
+    border-bottom: 1px solid #ddd;
+    display: flex;
+    align-items: center;
+}
+
+#historyList li:last-child {
+    border-bottom: none;
+}
+
+#historyList li input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+#removeSelectedButton, #clearHistoryButton, #resetButton {
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #ff6b6b;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#removeSelectedButton i, #clearHistoryButton i, #resetButton i {
+    margin-right: 5px;
+}
+
+#removeSelectedButton:hover, #clearHistoryButton:hover, #resetButton:hover {
+    background-color: #ff4c4c;
+}
+
+#buttonContainer {
+    text-align: center;
+    margin-top: 40px;
+}
+
+#shareButton, #resetButton {
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #FFEB3B; /* 카카오톡 색상 */
+    color: black;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold; /* 글씨를 굵게 */
+    transition: background-color 0.3s ease;
+    display: inline-block; /* 중앙 정렬 */
+}
+
+#shareButton i, #resetButton i {
+    margin-right: 5px;
+}
+
+#shareButton:hover, #resetButton:hover {
+    background-color: #FFDD00;
+}
+
+/* 마트 휴무일 섹션 */
+#holidaySection {
+    text-align: center;
+    margin-bottom: 20px; /* 상단에 위치할 때 공간 확보 */
+    display: flex;
+    justify-content: center;
+    gap: 10px; /* 버튼 사이 간격 */
+}
+
+#holidaySection button {
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px; /* 버튼 크기를 작게 */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#holidaySection button:hover {
+    background-color: #45a049;
 }
